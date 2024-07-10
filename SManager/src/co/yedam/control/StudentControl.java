@@ -32,15 +32,27 @@ public class StudentControl {
 				addStudent();
 				break;
 			case 3:
+				modStudent();
 				break;
 			case 4:
+				deleteStudent();
 				break;
 			case 5:
-				System.out.println("종료합니다.");
+				System.out.println("프로그램을 종료합니다!");
 				isTrue = false;
 			}
 		}
 	} // end of run()
+	
+	// 목록 출력 기능
+	void studentList() {
+		List<StudentVO> students = sdao.selectList();
+		System.out.println("학생번호     학생이름    연락처");
+		System.out.println("------------------------------------");
+		for(StudentVO svo : students) {
+			System.out.println(svo.briefShow());
+		}
+	} // end of studentList	
 	
 	// 등록 기능
 	void addStudent() {
@@ -71,13 +83,45 @@ public class StudentControl {
 		}
 	} // end of addStudent
 	
-	// 목록 출력 기능
-	void studentList() {
-		List<StudentVO> students = sdao.selectList();
-		System.out.println("학생번호     학생이름    연락처");
-		System.out.println("------------------------------------");
-		for(StudentVO svo : students) {
-			System.out.println(svo.briefShow());
+	// 수정 기능
+	void modStudent() {
+		System.out.print(">학생번호 입력: ");
+		String sno = scn.nextLine();
+		System.out.print(">학생이름 입력: ");
+		String sname = scn.nextLine();
+		System.out.print(">연락처 입력: ");
+		String phone = scn.nextLine();
+		System.out.print(">주소 입력: ");
+		String addr = scn.nextLine();
+		System.out.print(">생일 입력: ");
+		String birth = scn.nextLine();
+		
+		StudentVO std = new StudentVO();
+		std.setStdNo(sno);
+		std.setStdName(sname);
+		std.setStdPhone(phone);
+		std.setAddress(addr);
+		std.setBirthDate(birth);
+		
+		// 수정기능 호출
+		if(sdao.updateStudent(std)) {
+			System.out.println("수정완료!");
 		}
-	} // end of studentList()
+		else {
+			System.out.println("처리중 예외발생!");
+		}
+	} // end of modStudent
+
+	// 삭제 기능
+	void deleteStudent() {
+		System.out.print(">학생번호 입력: ");
+		String sno = scn.nextLine();
+		
+		if(sdao.removeStudent(sno)) {
+			System.out.println("삭제완료!");
+		}
+		else {
+			System.out.println("처리중 예외발생!");
+		}
+	} // end of deleteStudent
 }

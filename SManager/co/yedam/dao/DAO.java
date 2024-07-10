@@ -13,7 +13,7 @@ public class DAO {
 	//필드
 	Connection conn = null;
 	Statement stmt;
-	PreparedStatement psmt;
+	PreparedStatement pstmt;
 	ResultSet rs;
 	
 	//생성자

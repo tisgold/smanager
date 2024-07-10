@@ -5,7 +5,7 @@ import co.yedam.control.StudentControl;
 public class MainApplication {
 	public static void main(String[] args) {
 		//프로그램의 시작
-		StudentControl scontrol = new StudentControl();
-		scontrol.run();		
+		StudentControl sControl = new StudentControl();
+		sControl.run();		
 	}
 }
