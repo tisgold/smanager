@@ -11,6 +11,8 @@ public class StudentVO {
 	private String birthDate; // 1999-01-01
 	private Date creationDate;
 	
+	//생성자
+	
 	//메소드
 	public String getStdNo() {
 		return stdNo;
